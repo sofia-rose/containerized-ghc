@@ -36,3 +36,7 @@ RUN chmod +x /usr/local/bin/ghcup \
  && chgrp --recursive ghcgroup /opt/ghc \
  && chmod --recursive g=u /opt/ghc \
  && find /opt/ghc -type d -exec chmod g+s {} +
+
+ADD entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
