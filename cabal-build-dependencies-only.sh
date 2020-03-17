@@ -7,5 +7,6 @@ set -eu
 # so that other users in the ghcgroup can use the pre-built packages.
 
 cabal build all --dependencies-only
-chgrp --recursive ghcgroup /opt/ghc \
-chmod --recursive g=u /opt/ghc
+find /opt/ghc -user "$(whoami)" -exec chgrp ghcgroup {} +
+find /opt/ghc -user "$(whoami)" -exec chmod g=u {} +
+find /opt/ghc -user "$(whoami)" -type d -exec chmod g+s {} +

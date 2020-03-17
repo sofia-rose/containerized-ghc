@@ -34,4 +34,5 @@ RUN chmod +x /usr/local/bin/ghcup \
  && groupadd ghcgroup \
  && usermod --append --groups ghcgroup root \
  && chgrp --recursive ghcgroup /opt/ghc \
- && chmod --recursive g=u /opt/ghc
+ && chmod --recursive g=u /opt/ghc \
+ && find /opt/ghc -type d -exec chmod g+s {} +
