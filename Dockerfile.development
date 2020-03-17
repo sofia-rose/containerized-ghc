@@ -1,0 +1,16 @@
+FROM ghc:ghc-8.6.5-cabal-3.0.0.0
+
+ARG USER_ID
+ARG GROUP_ID
+
+RUN useradd \
+    --create-home \
+    --shell /bin/bash \
+    --uid "${USER_ID}" \
+    --gid "${GROUP_ID}" \
+    --groups ghcgroup \
+    ghcuser \
+ && echo "ghcuser ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+USER ghcuser
+ENV HOME /home/ghcuser
