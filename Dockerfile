@@ -2,6 +2,7 @@ FROM debian:buster-20200224
 
 RUN apt-get update \
  && apt-get install -y \
+    bash-completion \
     curl \
     g++ \
     gcc \
@@ -40,6 +41,12 @@ RUN chmod +x /usr/local/bin/ghcup \
  && chgrp --recursive ghcgroup /opt/ghc \
  && chmod --recursive g=u /opt/ghc \
  && find /opt/ghc -type d -exec chmod g+s {} +
+
+ARG CABAL_BASH_COMPLETION_URL=https://raw.githubusercontent.com/haskell/cabal/cabal-install-v${CABAL_VERSION}/cabal-install/bash-completion/cabal
+ARG GHC_BASH_COMPLETION_URL=https://raw.githubusercontent.com/ghc/ghc/ghc-${GHC_VERSION}-release/utils/completion/ghc.bash
+
+RUN curl -sSL "${CABAL_BASH_COMPLETION_URL}" > /etc/bash_completion.d/cabal
+RUN curl -sSL "${GHC_BASH_COMPLETION_URL}" > /etc/bash_completion.d/ghc.bash
 
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
