@@ -19,6 +19,10 @@ ARG GHCUP_VERSION=0.0.8
 ARG GHC_VERSION=8.6.5
 ARG CABAL_VERSION=3.0.0.0
 
+ENV GHCUP_INSTALL_BASE_PREFIX=/opt/ghc
+ENV CABAL_DIR=${GHCUP_INSTALL_BASE_PREFIX}/cabal
+ENV PATH=${CABAL_DIR}/bin:${GHCUP_INSTALL_BASE_PREFIX}/.ghcup/bin:${PATH}
+
 ADD ghc-vars.sh /etc/profile.d/ghc-vars.sh
 ADD ghcup-${GHCUP_VERSION} /usr/local/bin/ghcup
 ADD cabal-build-dependencies-only.sh /usr/local/bin/cabal-build-dependencies-only
