@@ -1,4 +1,4 @@
-FROM ghc:ghc-8.6.5-cabal-3.0.0.0
+FROM sofiarose/containerized-ghc:ghc-8.6.5-cabal-3.0.0.0
 
 ARG USER_ID
 ARG GROUP_ID

@@ -6,7 +6,7 @@ export GHCUP_VERSION=0.0.8
 export GHC_VERSION=8.6.5
 export CABAL_VERSION=3.0.0.0
 
-IMAGE_REPO=sofiarose/containzerized-ghc
+IMAGE_REPO=sofiarose/containerized-ghc
 IMAGE_TAG="ghc-${GHC_VERSION}-cabal-${CABAL_VERSION}"
 
 docker build \
